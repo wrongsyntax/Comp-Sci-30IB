@@ -1,37 +1,43 @@
 public class Person {
-    // Instance variables (private)
+
+    // instance variables
     private String name;
     private int age;
+    private int weight;
+    private int height;
 
-    // Constructor (name must match the class name)
-    public Person(String initialName) {
+    // constructor (name must match the class name)
+    public Person (String initialName){
         this.age = 0;
         this.name = initialName;
+        this.weight = 0;
+        this.height = 0;
     }
 
-    /* public void printPerson() {
-        System.out.println(this.name + ", age: " + this.age);
-    } */
-
-    public void becomeOlder() {
-        this.age ++;
-    }
-
-    // Getter
-    public int getAge() {
+    // getter (return information from the object to the method that called it)
+    public int getAge(){
         return this.age;
     }
 
-    // Getter
-    public String getName() {
+    // getter
+    public String getName(){
         return this.name;
     }
 
-    public boolean isAdult() {
-        if (this.age < 18) {
-            return false;
-        } else {
-            return true;
-        }
+    // setter (passes information from the program into the object)
+    public void setHeight (int newHeight){
+        this.height = newHeight;
     }
+
+    // setter
+    public void setWeight (int newWeight){
+        this.weight = newWeight;
+    }
+
+    public double bodyMassIndex(){
+        double heightDividedByHundred = this.height / 100.0;
+        return this.weight / (heightDividedByHundred * heightDividedByHundred);
+    }
+
+
 }
