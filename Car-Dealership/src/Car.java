@@ -36,4 +36,9 @@ public class Car {
     public int getPrice() {
         return this.price;
     }
+
+    public String[] getAll() {
+        String[] all = {this.make, this.model, Integer.toString(this.year), Integer.toString(this.odometer) + "km", this.colour, "$" + Integer.toString(this.price)};
+        return all;
+    }
 }
