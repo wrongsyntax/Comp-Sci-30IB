@@ -1,22 +1,21 @@
 import java.util.Random;
 
-public class Numbers {
+class Numbers {
     // Instance variables
     private Random random;
     private int maxNum;
 
     // Constructor
-    public Numbers(int maxNum) {
+    Numbers(int maxNum) {
         this.maxNum = maxNum;
         random = new Random();
     }
 
     private int drawNumber() {
-        int draw = random.nextInt(maxNum) + 1;
-        return draw;
+        return random.nextInt(maxNum) + 1;
     }
 
-    public int[] draw() {
+    int[] draw() {
         int[] drawnNums = {0, 0, 0, 0, 0, 0};
         for (int i = 0; i < 6; i++) {
             int draw = drawNumber();
