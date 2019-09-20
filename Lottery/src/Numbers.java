@@ -11,7 +11,7 @@ public class Numbers {
         random = new Random();
     }
 
-    public int drawNumber() {
+    private int drawNumber() {
         int draw = random.nextInt(maxNum) + 1;
         return draw;
     }
