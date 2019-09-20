@@ -6,7 +6,9 @@ public class Main {
         Numbers lottery = new Numbers(49);
 
         // Call method to draw numbers
-        int[] drawnNums = lottery.draw();
-        System.out.println("The drawn numbers are " + Arrays.toString(drawnNums) + ".");
+        for (int z = 0; z <= 20; z++) {
+            int[] drawnNums = lottery.draw();
+            System.out.println("The drawn numbers are " + Arrays.toString(drawnNums) + ".");
+        }
     }
 }
