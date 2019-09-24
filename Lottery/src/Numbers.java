@@ -11,10 +11,12 @@ class Numbers {
         random = new Random();
     }
 
+    // Private function to draw one random number
     private int drawNumber() {
         return random.nextInt(maxNum) + 1;
     }
 
+    // Function to randomly draw six numbers using drawNumber() and store in an array
     int[] draw() {
         int[] drawnNums = {0, 0, 0, 0, 0, 0};
         for (int i = 0; i < 6; i++) {
