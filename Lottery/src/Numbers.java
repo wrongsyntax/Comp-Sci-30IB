@@ -19,7 +19,7 @@ class Numbers {
     // Function to randomly draw six numbers using drawNumber() and store in an array
     int[] draw() {
         int[] drawnNums = {0, 0, 0, 0, 0, 0};
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < drawnNums.length; i++) {
             int draw = drawNumber();
             drawnNums[i] = draw;
         }
