@@ -26,11 +26,10 @@ class Numbers {
 
         // Check if there are any duplicates in the array, if there are, redraw
         int numOfDuplicates = 0;
-        for (int x = 0; x < drawnNums.length; x++) {
-            int numToCheck = drawnNums[x];
+        for (int numToCheck : drawnNums) {
             numOfDuplicates = 0;
-             for (int y = 0; y < drawnNums.length; y++) {
-                if (numToCheck == drawnNums[y]) {
+            for (int drawnNum : drawnNums) {
+                if (numToCheck == drawnNum) {
                     numOfDuplicates++;
                 }
                 if (numOfDuplicates >= 2) {
