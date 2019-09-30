@@ -15,7 +15,7 @@ class Guess {
     int[] guess() {
         // Get input of 6 integers in a list to separate values with whitespace
         List<Integer> guessList = new ArrayList<Integer>();
-        System.out.println("Enter 6 numbers between 1 and 49 separated with a space:");
+        System.out.println("Enter 6 numbers between 1 and 49 separated with a space for a chance to win $10,000,000:");
         while (guessList.size() < 6) {
             guessList.add(scanner.nextInt());
         }
