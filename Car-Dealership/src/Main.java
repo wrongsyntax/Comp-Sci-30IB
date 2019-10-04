@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        // Create car objects
         Car carOne = new Car(
                 "BMW",
                 "X3",
@@ -51,6 +52,7 @@ public class Main {
                 18970
         );
 
+        // Call method to get all info on car four
         String[] all = carFour.getAll();
         System.out.println(Arrays.toString(all));
     }
