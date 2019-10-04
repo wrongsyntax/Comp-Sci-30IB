@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        // Instantiation of Numbers object
+        // Instantiation of objects
         Numbers lottery = new Numbers(49);
         Guess guessNums = new Guess();
 
@@ -17,7 +17,7 @@ public class Main {
         if (lotteryGuess == drawnNums) {
             System.out.println("Congratulations! You won $10,000,000!");
         } else {
-            System.out.println("You've lost the lottery this time. Try again next time!");
+            System.out.println("You've lost the lottery. Try again next time!");
         }
     }
 }
