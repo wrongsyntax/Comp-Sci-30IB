@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         // Instantiation of Dice object
@@ -5,6 +7,7 @@ public class Main {
 
         // Call method to roll five dice
         int[] rolledNums = rollOne.roll();
+        System.out.println("You rolled " + Arrays.toString(rolledNums));
 
         // Instantiation of CheckAllEqual object
         CheckAllEqual check = new CheckAllEqual(rolledNums);
@@ -13,9 +16,9 @@ public class Main {
         boolean yahtzeeRolled = check.check();
 
         if (yahtzeeRolled) {
-            System.out.println("You rolled a Yahtzee!");
+            System.out.println("That's a Yahtzee!");
         } else {
-            System.out.println("You did not roll a Yahtzee.");
+            System.out.println("That is not a Yahtzee.");
         }
     }
 }
