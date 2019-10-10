@@ -1,4 +1,4 @@
-public class CheckAllEqual {
+class CheckAllEqual {
     // Instance variables
     private int[] arrayToCheck;
 
