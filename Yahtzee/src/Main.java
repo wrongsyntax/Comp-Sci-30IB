@@ -25,6 +25,7 @@ public class Main {
                     sum += rolledNum;
                 }
                 System.out.println("In the Chance category, you scored " + sum + " points. \n");
+                // TODO: Count how many of the same number was rolled
             }
         }
     }
