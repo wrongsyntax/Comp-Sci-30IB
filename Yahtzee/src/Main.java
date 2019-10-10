@@ -19,12 +19,12 @@ public class Main {
             if (yahtzeeRolled) {
                 System.out.println("That's a Yahtzee! \n");
             } else {
-                System.out.println("That is not a Yahtzee.");
+                System.out.println("\nThat is not a Yahtzee.");
                 int sum = 0;
                 for (int rolledNum : rolledNums) {
                     sum += rolledNum;
                 }
-                System.out.println("In the Chance category, you scored " + sum + " points. \n");
+                System.out.println("In the Chance category, you scored " + sum + " points.");
             }
         }
     }
