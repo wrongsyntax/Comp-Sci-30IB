@@ -1,7 +1,7 @@
 public class Player {
 
-    private double spendingMoney;
-    private String prizesWon;
+    public double spendingMoney;
+    public String prizesWon;
 
     public Player(double money) {
         spendingMoney = money;

@@ -3,11 +3,15 @@ import java.lang.Math;
 public class GameBooth {
     private double cost;
     private String firstPrize, consolationPrize;
+    private int firstPrizesWon;
+    private int consolationPrizesWon;
 
     public GameBooth(double charge, String p1, String p2) {
         cost = charge;
         firstPrize = p1;
         consolationPrize = p2;
+        firstPrizesWon = 0;
+        consolationPrizesWon = 0;
     }
 
     public String start() {
@@ -21,14 +25,24 @@ public class GameBooth {
             }
         }
         if (successes == 3) {
+            firstPrizesWon += 1;
             return(firstPrize);
         } else {
+            consolationPrizesWon += 1;
             return(consolationPrize);
         }
     }
 
     public double getCost() {
         return(cost);
+    }
+
+    public int getFirstPrizesWon() {
+        return firstPrizesWon;
+    }
+
+    public int getConsolationPrizesWon() {
+        return consolationPrizesWon;
     }
 }
 
