@@ -26,4 +26,4 @@ This program rolls six dice and stores it in an array. It then checks to see if 
 
 This is not entirely my code. It is modified to fit the criteria outlined in the assignment.
 
-###### Diclaimer: This code is here only for reference.
+###### Disclaimer: This code is here only for reference.
