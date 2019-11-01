@@ -1,4 +1,4 @@
-public class Frame {
+class Frame {
     // Instance variables
     private int pins;
     private int throwsLeft;
