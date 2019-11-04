@@ -16,7 +16,7 @@ public class Main {
         System.out.println("In this version of the game, you will have to guess the randomly generated number between 1 and 10.");
         System.out.println("The closer you are to that number, the more pins you knock down. Simple, right?");
         System.out.println("If you guess the number exactly, that's a strike, which gets you 20 points.");
-        System.out.println("Otherwise, each pin knocked down is worth one point, unless you get a spare, in which case you get 10 points. \n");
+        System.out.println("Otherwise, each pin knocked down is worth one point, unless you get a spare, in which case you get 15 points. \n");
 
         // Play the game for all 10 frames
         while (currentFrame <= 10) {
