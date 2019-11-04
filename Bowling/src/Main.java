@@ -48,7 +48,7 @@ public class Main {
                     System.out.println("You knocked down " + pinsKnockedDown + " pins.");
                     pinsLeft = pinsLeft - pinsKnockedDown;
                     if (pinsLeft == 0 && throwsLeft == 1) {
-                        // TODO: Weird bug happens here if the random int is guessed correctly, the input goes into a unending loop asking for an input
+                        // TODO: Weird bug happens here if the random int is guessed correctly, the input goes into a unending loop asking for and input
                         System.out.println("Spare!");
                         points += 15;
                         throwsLeft -= 1;
