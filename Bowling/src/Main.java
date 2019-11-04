@@ -9,7 +9,7 @@ public class Main {
         int throwsLeft;
         int guess;
         int points = 0;
-        int pinsKnockedDown;
+        int pinsKnockedDown = 0;
 
         // Print out the instructions of the game
         System.out.println("Welcome to Bowling!");
@@ -42,13 +42,15 @@ public class Main {
                 if (guess == randInt && throwsLeft == 2) {
                     points += 20;
                     System.out.println("Strike!");
+                    pinsKnockedDown = 10;
                     throwsLeft = 0;
                 } else if (pinsKnockedDown > 0) {
                     System.out.println("You knocked down " + pinsKnockedDown + " pins.");
                     pinsLeft = pinsLeft - pinsKnockedDown;
                     if (pinsLeft == 0 && throwsLeft == 1) {
+                        // TODO: Weird bug happens here if the random int is guessed correctly, the input goes into a unending loop asking for and input
                         System.out.println("Spare!");
-                        points += 10;
+                        points += 15;
                         throwsLeft -= 1;
                     } else {
                         points += Math.abs(randInt - guess);
@@ -56,7 +58,7 @@ public class Main {
                     }
                 }
             }
-            System.out.println("You knocked down " + (10 - pinsLeft) + " pins this frame.");
+            System.out.println("You knocked down " + (pinsKnockedDown) + " pins this frame.");
 
             // Move to the next frame
             currentFrame += 1;
@@ -64,6 +66,6 @@ public class Main {
 
         // Print out the final score
         System.out.println("\n");
-        System.out.println("In this game of bowling, you scored " + points + "points total.");
+        System.out.println("In this game of bowling, you scored " + points + " points total.");
     }
 }
