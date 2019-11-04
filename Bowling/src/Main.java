@@ -42,7 +42,7 @@ public class Main {
                 if (guess == randInt && throwsLeft == 2) {
                     points += 20;
                     System.out.println("Strike!");
-                    pinsKnockedDown = 10;
+                    pinsLeft -= 10;
                     throwsLeft = 0;
                 } else if (pinsKnockedDown > 0) {
                     System.out.println("You knocked down " + pinsKnockedDown + " pins.");
@@ -58,7 +58,7 @@ public class Main {
                     }
                 }
             }
-            System.out.println("You knocked down " + (pinsKnockedDown) + " pins this frame.");
+            System.out.println("You knocked down " + (10 - pinsLeft) + " pins this frame.");
 
             // Move to the next frame
             currentFrame += 1;
