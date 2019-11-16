@@ -9,6 +9,9 @@ public class Game {
     private String card;
     private String[] possibleSuits = {"Diamonds", "Hearts", "Spades", "Clubs"};
     private String suitOnCard;
+    private int aceDecision;
+    private String thirdCardDecision;
+    private String playAgain;
 
     // Constructor
     Game() {
@@ -17,6 +20,9 @@ public class Game {
         cardInt = 0;
         card = "";
         suitOnCard = "";
+        aceDecision = 0;
+        thirdCardDecision = "";
+        playAgain = "";
     }
 
     // Method to generate a random card
@@ -43,8 +49,42 @@ public class Game {
         return card;
     }
 
+    // Method to ask the player if the ace will be 1 or 11 points
+    int getAceDecision() {
+        System.out.println("Please enter how many points you would like your ace to be worth, 1 or 11 points: ");
+        aceDecision = scanner.nextInt();
+        while (!(aceDecision == 1 || aceDecision == 11)) {
+            System.out.println("Please enter only 1 or 11: ");
+            aceDecision = scanner.nextInt();
+        }
+        return aceDecision;
+    }
+
+    // Method to ask the player if they want a third card
+    String getThirdCardDecision() {
+        System.out.println("Please enter either y/n: ");
+        thirdCardDecision = scanner.nextLine();
+        while (!(thirdCardDecision.equals("y") || thirdCardDecision.equals("n"))) {
+            System.out.println("Please enter only \"y\" or \"n\": ");
+            thirdCardDecision = scanner.nextLine();
+        }
+        return thirdCardDecision;
+    }
+
+    // Method to ask player if they would like to play another round
+    String getPlayAgain() {
+        System.out.println("\nWould you like to play another round?");
+        System.out.println("Please enter either y/n: ");
+        playAgain = scanner.nextLine();
+        while (!(playAgain.equals("y") || playAgain.equals("n"))) {
+            System.out.println("Please enter only \"y\" or \"n\": ");
+            playAgain = scanner.nextLine();
+        }
+        return playAgain;
+    }
+
     // Method to get just the number associated with the card
-    int getCardInt() {
+    int getCardID() {
         return cardInt;
     }
 }
