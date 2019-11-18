@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Player {
+class Player {
     // Instance Variables
     private String name;
     private Scanner scanner = new Scanner(System.in);
