@@ -11,7 +11,7 @@ public class Main {
         String cardDrawnThree;
         int cardThreeID;
         int cardThreePoints;
-        int totalPoints;
+        int totalPoints = 0;
         String anotherCardDecision;
         String playAgain = "y";
 

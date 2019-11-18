@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game {
+class Game {
     // Instance variables
     private Random random;
     private Scanner scanner;
