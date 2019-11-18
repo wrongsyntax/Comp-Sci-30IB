@@ -6,19 +6,30 @@ public class Player {
     private Scanner scanner = new Scanner(System.in);
     private int points;
     private int cardOneID;
+    private String cardDrawnOne;
     private int cardTwoID;
+    private String cardDrawnTwo;
     private int cardThreeID;
+    private String cardDrawnThree;
 
     // Constructor
     Player() {
-        name = scanner.nextLine();
+        name = "";
         points = 0;
         cardOneID = 0;
         cardTwoID = 0;
         cardThreeID = 0;
+        cardDrawnOne = "";
+        cardDrawnTwo = "";
+        cardDrawnThree = "";
     }
 
-    // Methods to set the values for the card IDs
+    // Method to set the name of the player
+    void setName() {
+        name = scanner.nextLine();
+    }
+
+    // Methods to set the values for the cards
     void setCardOneID(int ID) {
         cardOneID = ID;
     }
@@ -28,13 +39,23 @@ public class Player {
     void setCardThreeID(int ID) {
         cardThreeID = ID;
     }
-
-    // Method to set the points for this player
-    void setPoints(int inPoints) {
-        points = inPoints;
+    void setCardDrawnOne(String card) {
+        cardDrawnOne = card;
+    }
+    void setCardDrawnTwo(String card) {
+        cardDrawnTwo = card;
+    }
+    void setCardDrawnThree(String card) {
+        cardDrawnThree = card;
     }
 
-    // Getter methods for the IDs and points
+    // Method to get the points for this player
+    int getPoints(int inPoints) {
+        points = inPoints;
+        return points;
+    }
+
+    // Getter methods for the cards, points, and name
     int getCardOneID() {
         return cardOneID;
     }
@@ -46,5 +67,17 @@ public class Player {
     }
     int getPoints() {
         return points;
+    }
+    String getName() {
+        return name;
+    }
+    String getCardDrawnOne() {
+        return cardDrawnOne;
+    }
+    String getCardDrawnTwo() {
+        return cardDrawnTwo;
+    }
+    String getCardDrawnThree() {
+        return cardDrawnThree;
     }
 }

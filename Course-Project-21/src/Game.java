@@ -50,7 +50,7 @@ class Game {
     }
 
     // Method to ask the player if the ace will be 1 or 11 points
-    int getAceDecision() {
+    private int getAceDecision() {
         System.out.println("Please enter how many points you would like your ace to be worth, 1 or 11 points: ");
         aceDecision = scanner.nextInt();
         while (!(aceDecision == 1 || aceDecision == 11)) {
@@ -81,6 +81,19 @@ class Game {
             playAgain = scanner.nextLine();
         }
         return playAgain;
+    }
+
+    // Method to return the points received for a card
+    int getPointsForCard(int cardID) {
+        int points;
+        if (cardID == 1) {
+            points = getAceDecision();
+        } else if (cardID == 11 || cardID == 12 || cardID == 13) {
+            points = 10;
+        } else {
+            points = cardID;
+        }
+        return points;
     }
 
     // Method to get just the number associated with the card
