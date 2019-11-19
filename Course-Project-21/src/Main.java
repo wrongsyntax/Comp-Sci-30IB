@@ -35,8 +35,8 @@ public class Main {
             playerOne.setCardOneID(game.getCardID());
             playerOne.setCardDrawnTwo(game.drawCard());
             playerOne.setCardTwoID(game.getCardID());
-            playerOnePoints = game.getPointsForCard(playerOne.getCardOneID()) + game.getPointsForCard(playerOne.getCardTwoID());
             System.out.println("\n" + playerOneName + " drew the following two cards: \n" + playerOne.getCardDrawnOne() + "\n and \n" + playerOne.getCardDrawnTwo());
+            playerOnePoints = game.getPointsForCard(playerOne.getCardOneID()) + game.getPointsForCard(playerOne.getCardTwoID());
             System.out.println(playerOneName + " got " + playerOnePoints + " points from those two cards.");
 
             // Ask player one if they want another card if they have less than 21 points
@@ -47,6 +47,7 @@ public class Main {
                     playerOne.setCardDrawnThree(game.drawCard());
                     playerOne.setCardThreeID(game.getCardID());
                     playerOnePoints += game.getPointsForCard(playerOne.getCardThreeID());
+                    System.out.println("The new card you drew is the " + playerOne.getCardDrawnThree());
                     System.out.println(playerOneName + " now has " + playerOnePoints + " points.");
                 } else if (anotherCardDecision.equals("n")) {
                     System.out.println("Okay then, you still have " + playerOnePoints + " points.");
@@ -58,8 +59,8 @@ public class Main {
             playerTwo.setCardOneID(game.getCardID());
             playerTwo.setCardDrawnTwo(game.drawCard());
             playerTwo.setCardTwoID(game.getCardID());
-            playerTwoPoints = game.getPointsForCard(playerTwo.getCardOneID()) + game.getPointsForCard(playerTwo.getCardTwoID());
             System.out.println("\n" + playerTwoName + " drew the following two cards: \n" + playerTwo.getCardDrawnOne() + "\n and \n" + playerTwo.getCardDrawnTwo());
+            playerTwoPoints = game.getPointsForCard(playerTwo.getCardOneID()) + game.getPointsForCard(playerTwo.getCardTwoID());
             System.out.println(playerTwoName + " got " + playerTwoPoints + " points from those two cards.");
 
             // Ask player two if they want another card if they have less than 21 points
@@ -70,12 +71,33 @@ public class Main {
                     playerTwo.setCardDrawnThree(game.drawCard());
                     playerTwo.setCardThreeID(game.getCardID());
                     playerTwoPoints += game.getPointsForCard(playerTwo.getCardThreeID());
+                    System.out.println("The new card you drew is the " + playerTwo.getCardDrawnThree());
                     System.out.println(playerTwoName + " now has " + playerTwoPoints + " points.");
                 } else if (anotherCardDecision.equals("n")) {
                     System.out.println("Okay then, you still have " + playerTwoPoints + " points.");
                 }
             }
 
+            // Determine the winner through a series of if statements
+            System.out.println("\nNow that both players have their cards, let's see who won: ");
+            if (playerOnePoints > 21 && playerTwoPoints > 21) {
+                System.out.println("It seems that both players got more than 21 points! It seems you'll have to play another round to determine a winner.");
+            } else if (playerOnePoints > 21 && playerTwoPoints < 21) {
+                System.out.println(playerOneName + " got more than 21 points but " + playerTwoName + " didn't. " + playerTwoName + " wins!");
+            } else if (playerOnePoints < 21 && playerTwoPoints > 21) {
+                System.out.println(playerTwoName + " got more than 21 points. " + playerTwoName + " wins this round!");
+            } else if (playerOnePoints < 21 && playerTwoPoints < 21) {
+                // Use the difference between the points to determine the winner if both players have less than 21 points
+                if ((playerOnePoints - playerTwoPoints) > 0) {
+                    System.out.println(playerOneName + " got closer to 21 without going over, so they won!");
+                } else if ((playerOnePoints - playerTwoPoints) < 0) {
+                    System.out.println(playerTwoName + " got closer to 21 points without going over so they win this time!");
+                }
+            } else if (playerOnePoints == 21 && playerTwoPoints != 21) {
+                System.out.println(playerOneName + " got exactly 21 points! They win!");
+            } else if (playerOnePoints != 21 && playerTwoPoints == 21) {
+                System.out.println(playerTwoName + " got exactly 21 points! They win!");
+            }
 
             playAgain = game.getPlayAgain();
         }
