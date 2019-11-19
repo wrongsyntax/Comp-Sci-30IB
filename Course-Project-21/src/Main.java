@@ -11,6 +11,7 @@ public class Main {
         String playerTwoName;
         int playerTwoPoints;
         String playAgain = "y";
+        String anotherCardDecision;
 
         // Print out the instructions
         System.out.println("Welcome to the game of 21!");
@@ -34,18 +35,47 @@ public class Main {
             playerOne.setCardOneID(game.getCardID());
             playerOne.setCardDrawnTwo(game.drawCard());
             playerOne.setCardTwoID(game.getCardID());
-            playerOnePoints = playerOne.getPoints(game.getPointsForCard(playerOne.getCardOneID())) + playerOne.getPoints(game.getPointsForCard(playerOne.getCardTwoID()));
+            playerOnePoints = game.getPointsForCard(playerOne.getCardOneID()) + game.getPointsForCard(playerOne.getCardTwoID());
             System.out.println("\n" + playerOneName + " drew the following two cards: \n" + playerOne.getCardDrawnOne() + "\n and \n" + playerOne.getCardDrawnTwo());
             System.out.println(playerOneName + " got " + playerOnePoints + " points from those two cards.");
+
+            // Ask player one if they want another card if they have less than 21 points
+            if (playerOnePoints < 21) {
+                System.out.println(playerOneName + ", you got less than 21 points. Would you like to draw another card?");
+                anotherCardDecision = game.getThirdCardDecision();
+                if (anotherCardDecision.equals("y")) {
+                    playerOne.setCardDrawnThree(game.drawCard());
+                    playerOne.setCardThreeID(game.getCardID());
+                    playerOnePoints += game.getPointsForCard(playerOne.getCardThreeID());
+                    System.out.println(playerOneName + " now has " + playerOnePoints + " points.");
+                } else if (anotherCardDecision.equals("n")) {
+                    System.out.println("Okay then, you still have " + playerOnePoints + " points.");
+                }
+            }
 
             // Draw the first two cards for player two
             playerTwo.setCardDrawnOne(game.drawCard());
             playerTwo.setCardOneID(game.getCardID());
             playerTwo.setCardDrawnTwo(game.drawCard());
             playerTwo.setCardTwoID(game.getCardID());
-            playerTwoPoints = playerTwo.getPoints(game.getPointsForCard(playerTwo.getCardOneID())) + playerTwo.getPoints(game.getPointsForCard(playerTwo.getCardTwoID()));
+            playerTwoPoints = game.getPointsForCard(playerTwo.getCardOneID()) + game.getPointsForCard(playerTwo.getCardTwoID());
             System.out.println("\n" + playerTwoName + " drew the following two cards: \n" + playerTwo.getCardDrawnOne() + "\n and \n" + playerTwo.getCardDrawnTwo());
             System.out.println(playerTwoName + " got " + playerTwoPoints + " points from those two cards.");
+
+            // Ask player two if they want another card if they have less than 21 points
+            if (playerTwoPoints < 21) {
+                System.out.println(playerTwoName + ", you got less than 21 points. Would you like to draw another card?");
+                anotherCardDecision = game.getThirdCardDecision();
+                if (anotherCardDecision.equals("y")) {
+                    playerTwo.setCardDrawnThree(game.drawCard());
+                    playerTwo.setCardThreeID(game.getCardID());
+                    playerTwoPoints += game.getPointsForCard(playerTwo.getCardThreeID());
+                    System.out.println(playerTwoName + " now has " + playerTwoPoints + " points.");
+                } else if (anotherCardDecision.equals("n")) {
+                    System.out.println("Okay then, you still have " + playerTwoPoints + " points.");
+                }
+            }
+
 
             playAgain = game.getPlayAgain();
         }

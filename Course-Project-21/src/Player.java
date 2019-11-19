@@ -49,11 +49,13 @@ class Player {
         cardDrawnThree = card;
     }
 
+    /*
     // Method to get the points for this player
     int getPoints(int inPoints) {
         points = inPoints;
         return points;
     }
+     */
 
     // Getter methods for the cards, points, and name
     int getCardOneID() {
@@ -64,9 +66,6 @@ class Player {
     }
     int getCardThreeID() {
         return cardThreeID;
-    }
-    int getPoints() {
-        return points;
     }
     String getName() {
         return name;
