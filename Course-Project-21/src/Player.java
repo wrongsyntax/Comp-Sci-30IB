@@ -14,7 +14,6 @@ class Player {
     // Constructor
     Player() {
         name = "";
-        points = 0;
         cardOneID = 0;
         cardTwoID = 0;
         cardThreeID = 0;
