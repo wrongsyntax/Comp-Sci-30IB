@@ -1,0 +1,49 @@
+MAIN CLASS
+---
+Print out the instructions for the game
+
+playerOneName = input
+playerTwoName = input
+
+draw player one's first card
+draw player two's second card
+print the first two cards drawn
+get the points for each of the cards and add them to the total points player one has
+print the points
+if an ace is drawn:
+    ask the player if they want it to be worth 1 or 11 points
+if the points are less than 21:
+    ask the player if they want a third card
+    if yes:
+        draw another card
+        if an ace was drawn:
+            ask the player if they want it to be worth 1 or 11 points
+        add the points to the total points for player one
+        print out what card was drawn
+        print out the new value for points
+    else if no:
+        don't draw another card
+
+draw player two's first card
+draw player two's second card
+print these cards that have been drawn
+get the points received from these points
+print out the points
+if an ace is drawn:
+    ask the player if they want it to be worth 1 or 11 points
+if the points are less than 21:
+    ask the player if they want to draw another card
+    if yes:
+        draw another card
+        if an ace was drawn:
+            ask the player if they want it to be worth 1 or 11 points
+        add the points to the total points for player two
+        print out what card was drawn
+        print out the new value for points
+    if no:
+        don't draw another card
+
+determine the winner
+print out who won
+
+ask if the players want to play another round
