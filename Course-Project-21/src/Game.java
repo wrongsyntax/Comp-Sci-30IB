@@ -53,6 +53,7 @@ class Game {
     private int getAceDecision() {
         System.out.println("Please enter how many points you would like your ace to be worth, 1 or 11 points: ");
         aceDecision = scanner.nextInt();
+        // TODO: Add error handling for the event where the user enters non-numeric characters
         while (!(aceDecision == 1 || aceDecision == 11)) {
             System.out.println("Please enter only 1 or 11: ");
             aceDecision = scanner.nextInt();
