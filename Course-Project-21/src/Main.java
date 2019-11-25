@@ -46,8 +46,8 @@ public class Main {
                 if (anotherCardDecision.equals("y")) {
                     playerOne.setCardDrawnThree(game.drawCard());
                     playerOne.setCardThreeID(game.getCardID());
-                    playerOnePoints += game.getPointsForCard(playerOne.getCardThreeID());
                     System.out.println("The new card you drew is the " + playerOne.getCardDrawnThree());
+                    playerOnePoints += game.getPointsForCard(playerOne.getCardThreeID());
                     System.out.println(playerOneName + " now has " + playerOnePoints + " points.");
                 } else if (anotherCardDecision.equals("n")) {
                     System.out.println("Okay then, you still have " + playerOnePoints + " points.");
@@ -70,8 +70,8 @@ public class Main {
                 if (anotherCardDecision.equals("y")) {
                     playerTwo.setCardDrawnThree(game.drawCard());
                     playerTwo.setCardThreeID(game.getCardID());
-                    playerTwoPoints += game.getPointsForCard(playerTwo.getCardThreeID());
                     System.out.println("The new card you drew is the " + playerTwo.getCardDrawnThree());
+                    playerTwoPoints += game.getPointsForCard(playerTwo.getCardThreeID());
                     System.out.println(playerTwoName + " now has " + playerTwoPoints + " points.");
                 } else if (anotherCardDecision.equals("n")) {
                     System.out.println("Okay then, you still have " + playerTwoPoints + " points.");
