@@ -12,6 +12,7 @@ class Game {
     private int aceDecision;
     private String thirdCardDecision;
     private String playAgain;
+    private Boolean done = false;
 
     // Constructor
     Game() {
@@ -52,11 +53,20 @@ class Game {
     // Method to ask the player if the ace will be 1 or 11 points
     private int getAceDecision() {
         System.out.println("Please enter how many points you would like your ace to be worth, 1 or 11 points: ");
-        aceDecision = scanner.nextInt();
-        // TODO: Add error handling for the event where the user enters non-numeric characters
-        while (!(aceDecision == 1 || aceDecision == 11)) {
-            System.out.println("Please enter only 1 or 11: ");
-            aceDecision = scanner.nextInt();
+        String aceDecisionString = scanner.nextLine();
+        while (!done) {
+            if (aceDecisionString.equals("1") || aceDecisionString.equals("11")) {
+                try {
+                    aceDecision = Integer.parseInt(aceDecisionString);
+                    done = true;
+                } catch (Exception e) {
+                    System.out.println("Please enter only 1 or 11: ");
+                    aceDecisionString = scanner.nextLine();
+                }
+            } else {
+                System.out.println("Please enter only 1 or 11: ");
+                aceDecisionString = scanner.nextLine();
+            }
         }
         return aceDecision;
     }
