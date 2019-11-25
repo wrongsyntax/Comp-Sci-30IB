@@ -2,8 +2,8 @@ MAIN CLASS
 ---
 Print out the instructions for the game
 
-playerOneName = input
-playerTwoName = input
+set the value for player one's name to the value from the Player class
+set the value for player two's name to the value from the Player class
 
 draw player one's first card
 draw player two's second card
@@ -40,10 +40,58 @@ if the points are less than 21:
         add the points to the total points for player two
         print out what card was drawn
         print out the new value for points
-    if no:
+    else if no:
         don't draw another card
 
 determine the winner
 print out who won
 
 ask if the players want to play another round
+if yes:
+    run the program again
+else if no:
+    end the program
+
+---
+PLAYER CLASS
+---
+instantiate variables for name, and all three cards and their IDs, and the input
+
+constructor Player() {
+    set the values for the instance variables to 0 or empty strings
+}
+
+ask for the player's name
+set the player's first card to a randomly drawn card
+set the card ID for the first card to the ID of the first cardDrawnTwo
+repeat for the second card and third card, but the third card is not always used
+
+---
+GAME CLASS
+---
+instantiate variables for random, input class, inputs, and possible suits
+create an array with all possible suits: {"Diamonds", "Hearts", "Spades", "Clubs"}
+
+constructor Game() {
+    set the values for instance variables as 0 or ""
+}
+
+function drawCard() {
+    randomly generate an integer from 1 to 13
+    if the int is 1:
+        the card drawn is an ace
+    else if the int is between 2 and 10:
+        the card drawn is the randomly drawn int
+    else if the int is 11:
+        card drawn is a Jack
+    else if the int is 12:
+        card drawn is a Queen
+    else if the int is 13:
+        card drawn is a King
+    randomly add a suit to the card drawn
+}
+
+function aceDecision() {
+    get input of either 1 or 11
+    set the input to the value for the points for the ace card
+}
