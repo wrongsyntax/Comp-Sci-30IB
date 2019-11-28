@@ -95,3 +95,19 @@ function aceDecision() {
     get input of either 1 or 11
     set the input to the value for the points for the ace card
 }
+
+function thirdCard() {
+    ask player if they want third card
+    return yes or no
+}
+
+function playAgain() {
+    ask player if they would like to play again
+    return yes or no
+}
+
+function pointsForCard() {
+    if card ID is 1:
+        ask player if the ace should be worth 1 or 11 points
+    otherwise assign points according to the card ID or 10 if the card ID is over 10
+}

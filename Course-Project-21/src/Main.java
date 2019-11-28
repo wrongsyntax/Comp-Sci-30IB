@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         // Instance variables
@@ -12,6 +14,8 @@ public class Main {
         int playerTwoPoints;
         String playAgain = "y";
         String anotherCardDecision;
+        Scanner scanner = new Scanner(System.in);
+        int gameType = 0;
 
         // Print out the instructions
         System.out.println("Welcome to the game of 21!");
@@ -20,6 +24,8 @@ public class Main {
         System.out.println("The goal of the game is to get as close to 21 points as possible w/out going over.");
         System.out.println("Points are awarded as follows:");
         System.out.println("An ace is worth 1 or 11 points, face cards give you 10 points, and all other cards (excluding Joker) are worth the amount on the card.");
+
+        gameType
 
         // Player stuff
         System.out.println("\nPlease enter player one's name: ");
@@ -92,6 +98,8 @@ public class Main {
                     System.out.println(playerOneName + " got closer to 21 without going over, so they won!");
                 } else if ((playerOnePoints - playerTwoPoints) < 0) {
                     System.out.println(playerTwoName + " got closer to 21 points without going over so they win this time!");
+                } else if (playerOnePoints == playerTwoPoints) {
+                    System.out.println("Both players got the same points. It's a tie!");
                 }
             } else if (playerOnePoints == 21 && playerTwoPoints != 21) {
                 System.out.println(playerOneName + " got exactly 21 points! They win!");
