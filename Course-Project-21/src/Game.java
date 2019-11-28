@@ -55,6 +55,7 @@ class Game {
         System.out.println("Please enter how many points you would like your ace to be worth, 1 or 11 points: ");
         String aceDecisionString = scanner.nextLine();
         while (!done) {
+            // Only if the input is either 1 or 11 try to convert it into an integer
             if (aceDecisionString.equals("1") || aceDecisionString.equals("11")) {
                 try {
                     aceDecision = Integer.parseInt(aceDecisionString);
