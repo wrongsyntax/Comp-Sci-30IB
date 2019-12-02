@@ -12,7 +12,7 @@ public class Main {
         Player playerTwo = new Player();
         String playerTwoName;
         int playerTwoPoints = 0;
-        // ai instance variables
+        // AI instance variables
         AI steev = new AI();
         String playAgain = "y";
         String anotherCardDecision;
@@ -116,7 +116,7 @@ public class Main {
                         }
                         System.out.println(playerTwoName + " now has " + playerTwoPoints + " points.");
                     } else if (anotherCardDecision.equals("n")) {
-                        System.out.println(playerTwoName + " chose not to draw another card and still has " + playerTwoPoints);
+                        System.out.println(playerTwoName + " chose not to draw another card and still has " + playerTwoPoints + " points.");
                     }
                 }
 
