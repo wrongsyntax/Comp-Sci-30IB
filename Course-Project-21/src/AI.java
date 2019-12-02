@@ -50,6 +50,7 @@ public class AI {
         } else if (intDecision == 1) {
             intDecision = 11;
         }
+        System.out.println("Steev chose the value for his ace to be " + intDecision + " points.");
         return intDecision;
     }
 
