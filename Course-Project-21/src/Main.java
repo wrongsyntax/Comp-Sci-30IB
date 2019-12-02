@@ -94,7 +94,7 @@ public class Main {
                 } else if (steev.getCardOneID() == 1 && steev.getCardTwoID() != 1) {
                     playerTwoPoints = steev.aceDecision() + game.getPointsForCard(steev.getCardTwoID());
                 } else if (steev.getCardOneID() != 1 && steev.getCardTwoID() == 1) {
-                    playerTwoPoints = game.getPointsForCard(steev.getCardTwoID() + steev.aceDecision());
+                    playerTwoPoints = game.getPointsForCard(steev.getCardOneID() + steev.aceDecision());
                 } else if (steev.getCardOneID() == 1 && steev.getCardTwoID() == 1) {
                     playerTwoPoints = steev.aceDecision() + steev.aceDecision();
                 }
