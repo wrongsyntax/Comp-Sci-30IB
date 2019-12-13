@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class Sorts {
     // Instance variables
-    int[] array = {};
-    int[] sortedArray = {};
+    int[] array;
+    int[] sortedArray;
 
     // Constructor
     Sorts(int[] arrayToSort, int[] sortedArray) {
@@ -36,5 +36,21 @@ public class Sorts {
     }
 
     // Selection sort method
-    void doSelectionSort() {}
+    void doSelectionSort() {
+        int iteration = 1;
+        for (int j = 0; j < array.length - 1; j++) {
+            int min = j;
+            for (int k = j + 1; k < array.length; k ++) {
+                if (array[k] < array[min]) {
+                    min = k;
+                }
+            }
+            int temp = array[min];
+            array[min] = array[j];
+            array[j] = temp;
+
+            System.out.println("Iteration " + iteration + ": " + Arrays.toString(array));
+            iteration ++;
+        }
+    }
 }
