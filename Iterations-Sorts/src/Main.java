@@ -12,7 +12,7 @@ public class Main {
 
         System.out.println("This is the unsorted array: \n" + Arrays.toString(arrayToSort));
         System.out.println("Please enter what sort method you would like to use: ");
-        System.out.println("(1) Bubble sort \n(2) Selection sort");
+        System.out.println("(1) Bubble sort \n(2) Selection sort \n(3) Insertion sort");
         try {
             sortMethod = input.nextInt();
         } catch (Exception e) {
@@ -23,6 +23,8 @@ public class Main {
             sorter.doBubbleSort();
         } else if (sortMethod == 2) {
             sorter.doSelectionSort();
+        } else if (sortMethod == 3) {
+            sorter.doInsertionSort();
         } else {
             System.out.println("Invalid input. Please try again.");
         }

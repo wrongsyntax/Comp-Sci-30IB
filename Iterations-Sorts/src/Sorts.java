@@ -40,7 +40,7 @@ public class Sorts {
         int iteration = 1;
         for (int j = 0; j < array.length - 1; j++) {
             int min = j;
-            for (int k = j + 1; k < array.length; k ++) {
+            for (int k = j + 1; k < array.length; k++) {
                 if (array[k] < array[min]) {
                     min = k;
                 }
@@ -48,6 +48,23 @@ public class Sorts {
             int temp = array[min];
             array[min] = array[j];
             array[j] = temp;
+
+            System.out.println("Iteration " + iteration + ": " + Arrays.toString(array));
+            iteration ++;
+        }
+    }
+
+    // Insertion sort method
+    void doInsertionSort() {
+        int iteration = 1;
+        for (int l = 1; l < array.length; l++) {
+            int temp = array[l];
+            int m = l - 1;
+            while ((m >= 0) && (array[m] > temp)) {
+                array[m+1] = array[m];
+                m--;
+            }
+            array[m+1] = temp;
 
             System.out.println("Iteration " + iteration + ": " + Arrays.toString(array));
             iteration ++;
