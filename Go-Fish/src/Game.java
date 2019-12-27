@@ -1,7 +1,9 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
     // Instance variables
+    Random random = new Random();
     Scanner input = new Scanner(System.in);
     int cardIndex = 0;
 
@@ -15,7 +17,11 @@ public class Game {
         while (!done) {
             System.out.println("Enter the rank of the card you would like: ");
             cardRank = input.nextLine();
-            cardRank = cardRank.substring(0, 1).toUpperCase() + cardRank.substring(1);
+            try {
+                cardRank = cardRank.substring(0, 1).toUpperCase() + cardRank.substring(1);
+            } catch (StringIndexOutOfBoundsException s) {
+                System.out.println("ERROR: NO INPUT DETECTED");
+            }
             if (!cardRank.equals("Ace") && !cardRank.equals("2") && !cardRank.equals("3") && !cardRank.equals("4") && !cardRank.equals("5") && !cardRank.equals("6") && !cardRank.equals("7") && !cardRank.equals("8") && !cardRank.equals("9") && !cardRank.equals("10") && !cardRank.equals("Jack") && !cardRank.equals("Queen") && !cardRank.equals("King")) {
                 System.out.println("That isn't a valid card.");
             } else {
@@ -42,7 +48,9 @@ public class Game {
     // Method to add card to current hand
     String[] addCardToHand(String[] currentHand, String cardToAdd) {
         String[] newHand = new String[currentHand.length + 1];
+        // Copy the cards already in hand
         System.arraycopy(currentHand, 0, newHand, 0, currentHand.length);
+        // Add the new card
         newHand[currentHand.length] = cardToAdd;
         return newHand;
     }
@@ -57,6 +65,7 @@ public class Game {
             }
         }
 
+        // Count how many cards were taken from the hand
         int nullCount = 0;
         for (String s : newHand) {
             if (s == null) {
@@ -64,10 +73,30 @@ public class Game {
             }
         }
 
+        // Remove the null elements from the array
         newHand = new String[currentHand.length - nullCount];
         for (int k = 0; k < newHand.length; k++) {
             if (currentHand[k] != null) {
                 newHand[k] = currentHand[k];
+            }
+        }
+        return newHand;
+    }
+
+    // Method to take a card from the draw pile
+    String[] goFish(String[] drawPile, String[] currentHand) {
+        String[] newHand = new String[currentHand.length + 1];
+        System.arraycopy(currentHand, 0, newHand, 0, currentHand.length);
+        // Pick up a random card from the draw pile b/c the draw pile is not shuffled: therefore can't take top card
+        String cardToAdd = drawPile[random.nextInt(drawPile.length)];
+        // Add the randomly drawn card to the hand if it isn't null
+        boolean done = false;
+        while (!done) {
+            if (cardToAdd != null) {
+                newHand[currentHand.length] = cardToAdd;
+                done = true;
+            } else {
+                cardToAdd = drawPile[random.nextInt(drawPile.length)];
             }
         }
         return newHand;
