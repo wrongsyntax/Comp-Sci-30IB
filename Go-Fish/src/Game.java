@@ -32,10 +32,10 @@ public class Game {
     }
 
     // Method to check for card in a given deck
-    boolean checkForCard(String[] givenDeck, String cardToCheckFor) {
+    boolean checkForCard(String[] hand, String cardToCheckFor) {
         boolean check = false;
-        for (int i = 0; i < givenDeck.length; i++) {
-            String s = givenDeck[i];
+        for (int i = 0; i < hand.length; i++) {
+            String s = hand[i];
             check = s.contains(cardToCheckFor);
             if (check) {
                 cardIndex = i;
@@ -46,22 +46,23 @@ public class Game {
     }
 
     // Method to add card to current hand
-    String[] addCardToHand(String[] currentHand, String cardToAdd) {
-        String[] newHand = new String[currentHand.length + 1];
+    String[] addCardToHand(String[] hand, String cardToAdd) {
+        String[] newHand = new String[hand.length + 1];
         // Copy the cards already in hand
-        System.arraycopy(currentHand, 0, newHand, 0, currentHand.length);
+        System.arraycopy(hand, 0, newHand, 0, hand.length);
         // Add the new card
-        newHand[currentHand.length] = cardToAdd;
+        newHand[hand.length] = cardToAdd;
         return newHand;
     }
 
+
     // Method to remove card from current hand
-    String[] removeCardFromHand(String[] currentHand, String cardToRemove) {
+    String[] removeCardFromHand(String[] hand, String cardToRemove) {
         // TODO: Bug occurs where if the opponent has more than one of the same rank of card, the player only gets one of them
-        String[] newHand = new String[currentHand.length];
+        String[] newHand = new String[hand.length];
         for (int i = 0; i < newHand.length; i++) {
-            if (!currentHand[i].equals(cardToRemove)) {
-                newHand[i] = currentHand[i];
+            if (!hand[i].equals(cardToRemove)) {
+                newHand[i] = hand[i];
             }
         }
 
@@ -74,31 +75,53 @@ public class Game {
         }
 
         // Remove the null elements from the array
-        newHand = new String[currentHand.length - nullCount];
+        newHand = new String[hand.length - nullCount];
         for (int k = 0; k < newHand.length; k++) {
-            if (currentHand[k] != null) {
-                newHand[k] = currentHand[k];
+            if (hand[k] != null) {
+                newHand[k] = hand[k];
             }
         }
         return newHand;
     }
 
     // Method to take a card from the draw pile
-    String[] goFish(String[] drawPile, String[] currentHand) {
-        String[] newHand = new String[currentHand.length + 1];
-        System.arraycopy(currentHand, 0, newHand, 0, currentHand.length);
+    String[] goFish(String[] drawPile, String[] hand) {
+        String[] newHand = new String[hand.length + 1];
+        System.arraycopy(hand, 0, newHand, 0, hand.length);
         // Pick up a random card from the draw pile b/c the draw pile is not shuffled: therefore can't take top card
         String cardToAdd = drawPile[random.nextInt(drawPile.length)];
         // Add the randomly drawn card to the hand if it isn't null
         boolean done = false;
         while (!done) {
             if (cardToAdd != null) {
-                newHand[currentHand.length] = cardToAdd;
+                newHand[hand.length] = cardToAdd;
                 done = true;
             } else {
                 cardToAdd = drawPile[random.nextInt(drawPile.length)];
             }
         }
         return newHand;
+    }
+
+    // Method to check for a full set of cards
+    boolean checkFullSet(String[] hand) {
+        String[] cardToCheckFor;
+        String[] cardBeingChecked;
+        int numOfSet = 0;
+        boolean check = false;
+        for (int i = 0; i < hand.length; i++) {
+            cardToCheckFor = hand[i].split(" ");
+            for (int j = i; j < hand.length; j++) {
+                cardBeingChecked = hand[j].split(" ");
+                if (cardToCheckFor[0].equals(cardBeingChecked[0])) {        // Compare the numbers of both cards to determine if they are the same
+                    numOfSet++;
+                }
+            }
+            if (numOfSet == 4) {
+                System.out.println("You have a full set!");
+                check = true;
+            }
+        }
+        return check;
     }
 }
