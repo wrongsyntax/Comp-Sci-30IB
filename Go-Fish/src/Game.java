@@ -58,7 +58,16 @@ public class Game {
 
     // Method to remove card from current hand
     String[] removeCardFromHand(String[] hand, String cardToRemove) {
-        // TODO: Bug occurs where if the opponent has more than one of the same rank of card, the player only gets one of them
+        // FIXME: Bug occurs where if the opponent has more than one of the same rank of card, the player only gets one of them
+        // FIXME: Another bug also happens where the last card is removed, not the one that should be removed
+        // -----------------------------------
+        // TODO: Possible fix for bugs:
+        /*
+        The program works properly when the opponent only has one card of the rank that is asked for.
+        If there is more than one card of the same rank, the program only detects one, since it's comparing the entire string,
+        including the suit.
+         */
+        // -----------------------------------
         String[] newHand = new String[hand.length];
         for (int i = 0; i < newHand.length; i++) {
             if (!hand[i].equals(cardToRemove)) {
@@ -75,10 +84,12 @@ public class Game {
         }
 
         // Remove the null elements from the array
+        // FIXME: temp is longer than newHand
+        String[] temp = newHand;
         newHand = new String[hand.length - nullCount];
         for (int k = 0; k < newHand.length; k++) {
-            if (hand[k] != null) {
-                newHand[k] = hand[k];
+            if (temp[k] != null) {
+                newHand[k] = temp[k];
             }
         }
         return newHand;
@@ -107,13 +118,14 @@ public class Game {
     boolean checkFullSet(String[] hand) {
         String[] cardToCheckFor;
         String[] cardBeingChecked;
-        int numOfSet = 0;
+        int numOfSet;
         boolean check = false;
         for (int i = 0; i < hand.length; i++) {
+            numOfSet = 0;
             cardToCheckFor = hand[i].split(" ");
             for (int j = i; j < hand.length; j++) {
                 cardBeingChecked = hand[j].split(" ");
-                if (cardToCheckFor[0].equals(cardBeingChecked[0])) {        // Compare the numbers of both cards to determine if they are the same
+                if (cardToCheckFor[0].equals(cardBeingChecked[0])) {        // Compare the ranks of both cards to determine if they are the same
                     numOfSet++;
                 }
             }
