@@ -59,7 +59,6 @@ public class Game {
     // Method to remove card from current hand
     String[] removeCardFromHand(String[] hand, String cardToRemove) {
         // FIXME: Bug occurs where if the opponent has more than one of the same rank of card, the player only gets one of them
-        // FIXME: Another bug also happens where the last card is removed, not the one that should be removed
         // -----------------------------------
         // TODO: Possible fix for bugs:
         /*
@@ -84,12 +83,13 @@ public class Game {
         }
 
         // Remove the null elements from the array
-        // FIXME: temp is longer than newHand
         String[] temp = newHand;
         newHand = new String[hand.length - nullCount];
-        for (int k = 0; k < newHand.length; k++) {
+        int index = 0;
+        for (int k = 0; k < temp.length; k++) {
             if (temp[k] != null) {
-                newHand[k] = temp[k];
+                newHand[index] = temp[k];
+                index++;
             }
         }
         return newHand;
