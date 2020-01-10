@@ -55,6 +55,6 @@ public class Main {
         }
 
         boolean hasFullSet = game.checkFullSet(currentHand);
-        System.out.println(hasFullSet);
+        System.out.println("Full sets in your hand: " + hasFullSet);
     }
 }

@@ -47,6 +47,7 @@ public class Game {
 
     // Method to add card to current hand
     String[] addCardToHand(String[] hand, String cardToAdd) {
+        // TODO: Need to add all cards removed from the opponent's hand
         String[] newHand = new String[hand.length + 1];
         // Copy the cards already in hand
         System.arraycopy(hand, 0, newHand, 0, hand.length);
@@ -58,18 +59,10 @@ public class Game {
 
     // Method to remove card from current hand
     String[] removeCardFromHand(String[] hand, String cardToRemove) {
-        // FIXME: Bug occurs where if the opponent has more than one of the same rank of card, the player only gets one of them
-        // -----------------------------------
-        // TODO: Possible fix for bugs:
-        /*
-        The program works properly when the opponent only has one card of the rank that is asked for.
-        If there is more than one card of the same rank, the program only detects one, since it's comparing the entire string,
-        including the suit.
-         */
-        // -----------------------------------
         String[] newHand = new String[hand.length];
         for (int i = 0; i < newHand.length; i++) {
-            if (!hand[i].equals(cardToRemove)) {
+            // Check just the rank of the card to remove all cards of that rank in the hand
+            if (!hand[i].contains(cardToRemove.split(" ")[0])) {
                 newHand[i] = hand[i];
             }
         }
@@ -86,9 +79,9 @@ public class Game {
         String[] temp = newHand;
         newHand = new String[hand.length - nullCount];
         int index = 0;
-        for (int k = 0; k < temp.length; k++) {
-            if (temp[k] != null) {
-                newHand[index] = temp[k];
+        for (String s : temp) {
+            if (s != null) {
+                newHand[index] = s;
                 index++;
             }
         }
