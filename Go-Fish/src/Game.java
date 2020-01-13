@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,10 +6,14 @@ public class Game {
     // Instance variables
     Random random = new Random();
     Scanner input = new Scanner(System.in);
+    String[] drawPile;
+    String[] cardsToRemove = new String[4];
     int cardIndex = 0;
 
     // Constructor
-    Game() {}
+    Game(String[] drawPile) {
+        this.drawPile = drawPile;
+    }
 
     // Method to ask for a card
     String askForCard() {
@@ -46,13 +51,35 @@ public class Game {
     }
 
     // Method to add card to current hand
-    String[] addCardToHand(String[] hand, String cardToAdd) {
-        // TODO: Need to add all cards removed from the opponent's hand
-        String[] newHand = new String[hand.length + 1];
+    String[] addCardToHand(String[] hand, String[] cardsToAdd) {
+        int origLength = hand.length;
+        // Count how many cards were taken from the hand
+        int nullCount = 0;
+        for (String s : cardsToAdd) {
+            if (s == null) {
+                nullCount++;
+            }
+        }
+
+        // Remove the null elements from the array
+        String[] temp = cardsToAdd;
+        cardsToAdd = new String[temp.length - nullCount];
+        int tempIndex2 = 0;
+        for (String s : temp) {
+            if (s != null) {
+                cardsToAdd[tempIndex2] = s;
+                tempIndex2++;
+            }
+        }
+
+        String[] newHand = new String[hand.length + cardsToAdd.length];
         // Copy the cards already in hand
         System.arraycopy(hand, 0, newHand, 0, hand.length);
-        // Add the new card
-        newHand[hand.length] = cardToAdd;
+        // Add the new cards
+        for (String s : cardsToAdd) {
+            System.arraycopy(cardsToAdd, 0, newHand, origLength, cardsToAdd.length);
+        }
+
         return newHand;
     }
 
@@ -60,10 +87,15 @@ public class Game {
     // Method to remove card from current hand
     String[] removeCardFromHand(String[] hand, String cardToRemove) {
         String[] newHand = new String[hand.length];
+        cardsToRemove = new String[4];
+        int tempIndex1 = 0;
         for (int i = 0; i < newHand.length; i++) {
             // Check just the rank of the card to remove all cards of that rank in the hand
             if (!hand[i].contains(cardToRemove.split(" ")[0])) {
                 newHand[i] = hand[i];
+            } else {
+                cardsToRemove[tempIndex1] = hand[i];
+                tempIndex1++;
             }
         }
 
@@ -78,33 +110,45 @@ public class Game {
         // Remove the null elements from the array
         String[] temp = newHand;
         newHand = new String[hand.length - nullCount];
-        int index = 0;
+        int tempIndex2 = 0;
         for (String s : temp) {
             if (s != null) {
-                newHand[index] = s;
-                index++;
+                newHand[tempIndex2] = s;
+                tempIndex2++;
             }
         }
         return newHand;
     }
 
+    // Method to get the list of cards to remove
+    String[] getCardsToRemove() {
+        return cardsToRemove;
+    }
+
     // Method to take a card from the draw pile
-    String[] goFish(String[] drawPile, String[] hand) {
+    String[] goFish(String[] hand) {
         String[] newHand = new String[hand.length + 1];
         System.arraycopy(hand, 0, newHand, 0, hand.length);
         // Pick up a random card from the draw pile b/c the draw pile is not shuffled: therefore can't take top card
-        String cardToAdd = drawPile[random.nextInt(drawPile.length)];
+        int randIndex = random.nextInt(drawPile.length);
+        String cardToAdd = drawPile[randIndex];
         // Add the randomly drawn card to the hand if it isn't null
         boolean done = false;
         while (!done) {
             if (cardToAdd != null) {
                 newHand[hand.length] = cardToAdd;
+                drawPile[randIndex] = null;
                 done = true;
             } else {
                 cardToAdd = drawPile[random.nextInt(drawPile.length)];
             }
         }
         return newHand;
+    }
+
+    // Method to get the updated draw pile
+    String[] getDrawPile() {
+        return drawPile;
     }
 
     // Method to check for a full set of cards
