@@ -14,6 +14,7 @@ public class Main {
 
         // Deal the opponent's first five cards
         String[] opponentHand = opponent.getDealtCards(fullDeck);
+        AI steev = new AI(opponentHand);
         // This is temporary
         System.out.println("Leaked info - opponent's hand: " + Arrays.toString(opponentHand));
 
@@ -55,5 +56,41 @@ public class Main {
 
         boolean hasFullSet = game.checkFullSet(currentHand);
         System.out.println("Full sets in your hand: " + hasFullSet);
+        System.out.println();
+
+        // Opponent asks the opponent for a card with this
+        ask = steev.ask();
+        System.out.println("Steev asked for: " + ask);
+
+        done = false;
+        otherPlayerHasCard = false;
+        while (!done) {
+            if (game.checkForCard(opponentHand, ask)) {      // Check if the opponent has the card they asked for
+                if (game.checkForCard(currentHand, ask)) {     // Check if the player has that card as well
+                    System.out.println("You have that card!");
+                    otherPlayerHasCard = true;
+                } else {
+                    System.out.println("You don't have that card. Steev has to go fish!");
+                }
+                done = true;
+            }
+        }
+
+        if (otherPlayerHasCard) {
+            // Remove the card from the player's hand and add it to the opponent's hand
+            currentHand = game.removeCardFromHand(currentHand, currentHand[game.cardIndex]);
+            opponentHand = game.addCardToHand(opponentHand, game.getCardsToRemove());
+            System.out.println("You now have the following cards: " + Arrays.toString(currentHand));
+            System.out.println("Opponent now has the following cards: " + Arrays.toString(opponentHand));
+        } else {
+            opponentHand = game.goFish(opponentHand);
+            // Temporary
+            System.out.println("Steev now have the following cards: " + Arrays.toString(opponentHand));
+        }
+
+        hasFullSet = game.checkFullSet(opponentHand);
+        System.out.println("Full sets in Steev's hand: " + hasFullSet);
     }
 }
+
+

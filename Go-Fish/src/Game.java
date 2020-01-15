@@ -79,7 +79,6 @@ public class Game {
         for (String s : cardsToAdd) {
             System.arraycopy(cardsToAdd, 0, newHand, origLength, cardsToAdd.length);
         }
-
         return newHand;
     }
 
@@ -146,10 +145,12 @@ public class Game {
         return newHand;
     }
 
+    /*
     // Method to get the updated draw pile
     String[] getDrawPile() {
         return drawPile;
     }
+    */
 
     // Method to check for a full set of cards
     boolean checkFullSet(String[] hand) {
