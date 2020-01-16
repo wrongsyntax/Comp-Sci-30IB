@@ -82,7 +82,6 @@ public class Game {
         return newHand;
     }
 
-
     // Method to remove card from current hand
     String[] removeCardFromHand(String[] hand, String cardToRemove) {
         String[] newHand = new String[hand.length];
