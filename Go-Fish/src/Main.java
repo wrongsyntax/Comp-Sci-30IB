@@ -3,18 +3,20 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Deck deck = new Deck();
-        Player player = new Player();
-        Player opponent = new Player();
         String[] fullDeck = deck.createDeck();
+        Player player = new Player(fullDeck);
+        Player opponent = new Player(fullDeck);
+        AI steev = new AI();
         boolean playing = true;
+        int playerPoints = 0;
+        int opponentPoints = 0;
 
         // Deal the player's first five cards
-        String[] currentHand = player.getDealtCards(fullDeck);
+        String[] currentHand = player.getDealtCards();
         System.out.println("You've been dealt the following cards: " + Arrays.toString(currentHand));
 
         // Deal the opponent's first five cards
-        String[] opponentHand = opponent.getDealtCards(fullDeck);
-        AI steev = new AI();
+        String[] opponentHand = opponent.getDealtCards();
         // This is temporary
         System.out.println("Leaked info - opponent's hand: " + Arrays.toString(opponentHand));
 
@@ -22,8 +24,18 @@ public class Main {
         Game game = new Game(fullDeck);
 
         while (playing) {
+            // Print out how many cards are left in the draw pile
+            int nullCount = 0;
+            for (String s : game.drawPile) {
+                if (s == null) {
+                    nullCount++;
+                }
+            }
+            System.out.println("Cards left in draw pile: " + (52 - nullCount));
+
+            // PLAYER'S TURN
             // Player asks the opponent for a card with this
-            String ask = game.askForCard();
+            String ask = game.askForCard(currentHand);
             System.out.println("You asked for: " + ask);
 
             boolean done = false;
@@ -37,9 +49,9 @@ public class Main {
                         System.out.println("The opponent doesn't have that card. Go fish!");
                     }
                     done = true;
-                } else {        // If the player doesn't have the card they asked for
+                } else {      // If the player doesn't have the card they asked for
                     System.out.println("You don't seem to have that card. Try again.");
-                    ask = game.askForCard();
+                    ask = game.askForCard(currentHand);
                     System.out.println("You asked for: " + ask);
                 }
             }
@@ -58,7 +70,14 @@ public class Main {
             boolean hasFullSet = game.checkFullSet(currentHand);
             System.out.println("Full sets in your hand: " + hasFullSet);
             System.out.println();
+            if (hasFullSet) {       // Remove the cards of the full set and add points
+                currentHand = game.removeCardFromHand(currentHand, game.fullSetCard);
+                playerPoints++;
+                System.out.println("You now have " + playerPoints + " points.");
+                System.out.println();
+            }
 
+            // OPPONENT'S TURN
             // Opponent asks the opponent for a card with this
             ask = steev.ask(opponentHand);
             System.out.println("Steev asked for: " + ask);
@@ -66,7 +85,7 @@ public class Main {
             done = false;
             otherPlayerHasCard = false;
             while (!done) {
-                if (game.checkForCard(opponentHand, ask)) {      // Check if the opponent has the card they asked for
+                if (game.checkForCard(opponentHand, ask)) {     // Check if the opponent has the card they asked for
                     if (game.checkForCard(currentHand, ask)) {     // Check if the player has that card as well
                         System.out.println("You have that card!");
                         otherPlayerHasCard = true;
@@ -74,7 +93,7 @@ public class Main {
                         System.out.println("You don't have that card. Steev has to go fish!");
                     }
                     done = true;
-                } else {        // If the player doesn't have the card they asked for
+                } else {    // If the player doesn't have the card they asked for
                     System.out.println("Steev asked for a card he doesn't seem to have. He'll have to try again.");
                     ask = steev.ask(opponentHand);
                     System.out.println("Steev asked for: " + ask);
@@ -90,11 +109,17 @@ public class Main {
             } else {
                 opponentHand = game.goFish(opponentHand);
                 // Temporary
-                System.out.println("Steev now have the following cards: " + Arrays.toString(opponentHand));
+                System.out.println("Steev now has the following cards: " + Arrays.toString(opponentHand));
             }
 
             hasFullSet = game.checkFullSet(opponentHand);
             System.out.println("Full sets in Steev's hand: " + hasFullSet);
+            if (hasFullSet) {       // Remove the cards of the full set and add points
+                opponentHand = game.removeCardFromHand(opponentHand, game.fullSetCard);
+                opponentPoints++;
+                System.out.println("The opponent now has " + opponentPoints + " points.");
+                System.out.println();
+            }
         }
     }
 }

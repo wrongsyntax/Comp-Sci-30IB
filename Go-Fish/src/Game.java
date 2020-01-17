@@ -8,6 +8,7 @@ public class Game {
     Scanner input = new Scanner(System.in);
     String[] drawPile;
     String[] cardsToRemove = new String[4];
+    String fullSetCard;
     int cardIndex = 0;
 
     // Constructor
@@ -16,10 +17,11 @@ public class Game {
     }
 
     // Method to ask for a card
-    String askForCard() {
+    String askForCard(String[] hand) {
         String cardRank = null;
         boolean done = false;
         while (!done) {
+            System.out.println("\nYou have the following cards: " + Arrays.toString(hand));
             System.out.println("Enter the rank of the card you would like: ");
             cardRank = input.nextLine();
             try {
@@ -76,7 +78,7 @@ public class Game {
         // Copy the cards already in hand
         System.arraycopy(hand, 0, newHand, 0, hand.length);
         // Add the new cards
-        for (String s : cardsToAdd) {
+        for (String ignored : cardsToAdd) {
             System.arraycopy(cardsToAdd, 0, newHand, origLength, cardsToAdd.length);
         }
         return newHand;
@@ -97,25 +99,33 @@ public class Game {
             }
         }
 
+        newHand = removeNulls(newHand);
+
+        return newHand;
+    }
+
+    // Method to remove null values from an array
+    String[] removeNulls(String[] array) {
+        String[] origArray = array;
         // Count how many cards were taken from the hand
         int nullCount = 0;
-        for (String s : newHand) {
+        for (String s : array) {
             if (s == null) {
                 nullCount++;
             }
         }
 
         // Remove the null elements from the array
-        String[] temp = newHand;
-        newHand = new String[hand.length - nullCount];
+        String[] temp = array;
+        array = new String[origArray.length - nullCount];
         int tempIndex2 = 0;
         for (String s : temp) {
             if (s != null) {
-                newHand[tempIndex2] = s;
+                array[tempIndex2] = s;
                 tempIndex2++;
             }
         }
-        return newHand;
+        return array;
     }
 
     // Method to get the list of cards to remove
@@ -167,7 +177,7 @@ public class Game {
                 }
             }
             if (numOfSet == 4) {
-                System.out.println("You have a full set!");
+                fullSetCard = cardToCheckFor[0];
                 check = true;
             }
         }
