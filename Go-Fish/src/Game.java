@@ -27,7 +27,7 @@ public class Game {
             try {
                 cardRank = cardRank.substring(0, 1).toUpperCase() + cardRank.substring(1);
             } catch (StringIndexOutOfBoundsException s) {
-                System.out.println("ERROR: NO INPUT DETECTED");
+                System.out.print("ERROR: NO INPUT DETECTED");
             }
             if (!cardRank.equals("Ace") && !cardRank.equals("2") && !cardRank.equals("3") && !cardRank.equals("4") && !cardRank.equals("5") && !cardRank.equals("6") && !cardRank.equals("7") && !cardRank.equals("8") && !cardRank.equals("9") && !cardRank.equals("10") && !cardRank.equals("Jack") && !cardRank.equals("Queen") && !cardRank.equals("King")) {
                 System.out.println("That isn't a valid card.");

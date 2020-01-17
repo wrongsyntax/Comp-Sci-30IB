@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,9 +8,24 @@ public class Main {
         Player player = new Player(fullDeck);
         Player opponent = new Player(fullDeck);
         AI steev = new AI();
+        Scanner scanner = new Scanner(System.in);
         boolean playing = true;
         int playerPoints = 0;
         int opponentPoints = 0;
+
+        System.out.println("Before beginning, please enter the amount of points you would like to play to, between 1 and 13:  ");
+        String pointsToPlayTo = scanner.nextLine();
+        while (!(pointsToPlayTo.equals("1") || pointsToPlayTo.equals("2") || pointsToPlayTo.equals("3") || pointsToPlayTo.equals("4") || pointsToPlayTo.equals("5") || pointsToPlayTo.equals("6") || pointsToPlayTo.equals("7") || pointsToPlayTo.equals("8") || pointsToPlayTo.equals("9") || pointsToPlayTo.equals("10") || pointsToPlayTo.equals("11") || pointsToPlayTo.equals("12") || pointsToPlayTo.equals("13"))) {
+            System.out.println("Please enter only a value between 1 and 13 - inclusive.");
+            pointsToPlayTo = scanner.nextLine();
+        }
+
+        System.out.println("Now, please choose whether to play the game on your own (1) or to simulate a game (2).");
+        String gameDecision = scanner.nextLine();
+        while (!(gameDecision.equals("1") || gameDecision.equals("2"))) {
+            System.out.println("Please input only \"1\" or \"2\".");
+            gameDecision = scanner.nextLine();
+        }
 
         // Deal the player's first five cards
         String[] currentHand = player.getDealtCards();
@@ -23,7 +39,7 @@ public class Main {
         // Update the draw pile to contain the remaining cards in the game class
         Game game = new Game(fullDeck);
 
-        while (playing) {
+        while (playerPoints != Integer.parseInt(pointsToPlayTo) && opponentPoints != Integer.parseInt(pointsToPlayTo)) {
             // Print out how many cards are left in the draw pile
             int nullCount = 0;
             for (String s : game.drawPile) {
@@ -35,7 +51,13 @@ public class Main {
 
             // PLAYER'S TURN
             // Player asks the opponent for a card with this
-            String ask = game.askForCard(currentHand);
+            String ask = null;
+            if (gameDecision.equals("1")) {
+                ask = game.askForCard(currentHand);
+            } else if (gameDecision.equals("2")) {
+                ask = steev.ask(currentHand);
+
+            }
             System.out.println("You asked for: " + ask);
 
             boolean done = false;
@@ -120,6 +142,13 @@ public class Main {
                 System.out.println("The opponent now has " + opponentPoints + " points.");
                 System.out.println();
             }
+        }
+
+        // Announce the winner and end the game
+        if (playerPoints == Integer.parseInt(pointsToPlayTo)) {
+            System.out.println("\n\nYou won the game! Congratulations!");
+        } else {
+            System.out.println("\n\nSteev won this game... Better luck next time");
         }
     }
 }
