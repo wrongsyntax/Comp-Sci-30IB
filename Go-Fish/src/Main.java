@@ -146,9 +146,9 @@ public class Main {
 
         // Announce the winner and end the game
         if (playerPoints == Integer.parseInt(pointsToPlayTo)) {
-            System.out.println("\n\nYou won the game! Congratulations!");
+            System.out.println("\nYou won the game! Congratulations!");
         } else {
-            System.out.println("\n\nSteev won this game... Better luck next time");
+            System.out.println("\nSteev won this game... Better luck next time");
         }
     }
 }
