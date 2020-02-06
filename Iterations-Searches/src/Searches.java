@@ -28,16 +28,6 @@ public class Searches {
         int high = arrayToSearch.length - 1;
 
         while (high >= low) {
-            int newLength = high - low;
-            int[] arrayTemp = new int[newLength + 1];
-            int tempIndex = 0;
-            for (int i = low; i <= high; i++) {
-                arrayTemp[tempIndex] = arrayToSearch[i];
-                tempIndex++;
-            }
-            System.out.println("The array has been split in half. Here is the portion being searched: ");
-            System.out.println(Arrays.toString(arrayTemp));
-
             int mid = (low + high) / 2;
             if (arrayToSearch[mid] == target) {
                 index = mid;
@@ -47,6 +37,15 @@ public class Searches {
             } else if (arrayToSearch[mid] > target) {
                 high = mid - 1;
             }
+            int newLength = high - low;
+            int[] arrayTemp = new int[newLength + 1];
+            int tempIndex = 0;
+            for (int i = low; i <= high; i++) {
+                arrayTemp[tempIndex] = arrayToSearch[i];
+                tempIndex++;
+            }
+            System.out.println("The array has been split in half. Here is the portion being searched: ");
+            System.out.println(Arrays.toString(arrayTemp));
         }
 
         return index;
