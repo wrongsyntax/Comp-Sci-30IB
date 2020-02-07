@@ -17,12 +17,12 @@ public class Main {
 
             // Ask for the data the user wants to retrieve
             int dataIndex = infoRetriever.askForData();
-        /*
-        if (dataIndex != 5) {
-            System.out.println("User asked for: " + fullList[0][dataIndex].replace("_", " ").toLowerCase());
-        } else {
-            System.out.println("User asked for: " + fullList[0][dataIndex].replace("_", " "));
-        } */
+            /*
+            if (dataIndex != 5) {
+                System.out.println("User asked for: " + fullList[0][dataIndex].replace("_", " ").toLowerCase());
+            } else {
+                System.out.println("User asked for: " + fullList[0][dataIndex].replace("_", " "));
+            } */
 
             // Print out the result of the search
             if (dataIndex == 1) {
