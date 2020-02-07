@@ -45,13 +45,24 @@ public class Retriever {
     }
 
     boolean askAnotherSearch() {
-        System.out.println("Would you like to make another search? (y/n)");
+        boolean decision = false;
+        boolean done = false;
+        System.out.println("Would you like to make another search?");
         String input = scanner.nextLine();
-        if (input.equals("y")) {
-            return true;
-        } else {
-            System.out.println("Terminating.");
-            return false;
+        while (!done) {
+            if (input.equals("y")) {
+                decision = true;
+                done = true;
+            } else if (input.equals("n")) {
+                System.out.println("Terminating.");
+                decision = false;
+                done = true;
+            } else {
+                System.out.println("Please enter only 'y' or 'n'");
+                input = scanner.nextLine();
+                done = false;
+            }
         }
+        return decision;
     }
 }
