@@ -26,7 +26,7 @@ public class Main {
 
             // Print out the result of the search
             if (dataIndex == 1) {
-                System.out.println("The rank of " + fullList[countryIndex][0].replace("_", " ") + " is " + fullList[countryIndex][dataIndex]);
+                System.out.println(fullList[countryIndex][0].replace("_", " ") + " is ranked " + fullList[countryIndex][dataIndex]);
             } else if (dataIndex == 2) {
                 System.out.println("The birth rate of " + fullList[countryIndex][0].replace("_", " ") + " is " + fullList[countryIndex][dataIndex]);
             } else if (dataIndex == 3) {
