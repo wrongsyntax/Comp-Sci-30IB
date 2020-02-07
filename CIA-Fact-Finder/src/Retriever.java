@@ -43,4 +43,15 @@ public class Retriever {
 
         return dataIndex;
     }
+
+    boolean askAnotherSearch() {
+        System.out.println("Would you like to make another search? (y/n)");
+        String input = scanner.nextLine();
+        if (input.equals("y")) {
+            return true;
+        } else {
+            System.out.println("Terminating.");
+            return false;
+        }
+    }
 }
