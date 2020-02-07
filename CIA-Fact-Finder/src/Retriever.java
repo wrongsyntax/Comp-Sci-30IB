@@ -23,6 +23,7 @@ public class Retriever {
             }
         }
 
+        // Ask for input
         System.out.println();
         System.out.println("Enter the number of one of the countries above: ");
         countryIndex = scanner.nextInt();
@@ -35,6 +36,7 @@ public class Retriever {
             System.out.println("(" + i + ")" + " " + data[0][i].replace("_", " "));
         }
 
+        // Ask for input
         System.out.println();
         System.out.println("Choose the data you would like from the list above: ");
         dataIndex = scanner.nextInt();
