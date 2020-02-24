@@ -28,7 +28,7 @@ public class Main {
             array = searcher.doInsertionSort(array);
             System.out.println("The array has been sorted so the binary search works properly: ");
             System.out.println(Arrays.toString(array));
-            System.out.println(searcher.doBinarySearch(array, target));
+            System.out.println("Target found at index: " + searcher.doBinarySearch(array, target));
         }
     }
 }

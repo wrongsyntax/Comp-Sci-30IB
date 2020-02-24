@@ -26,6 +26,7 @@ public class Searches {
     int doBinarySearch(int[] arrayToSearch, int target) {
         int low = 0;
         int high = arrayToSearch.length - 1;
+        int iteration = 0;
 
         while (high >= low) {
             int mid = (low + high) / 2;
@@ -46,6 +47,8 @@ public class Searches {
             }
             System.out.println("The array has been split in half. Here is the portion being searched: ");
             System.out.println(Arrays.toString(arrayTemp));
+            iteration++;
+            System.out.println("Iteration: " + iteration);
         }
 
         return index;
