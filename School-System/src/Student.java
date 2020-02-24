@@ -22,8 +22,8 @@ public class Student extends Person {
         grades = tempGrades;
 
         // Add the new values to the arrays
-        courses[courses.length-1] = newCourse;
-        grades[grades.length-1] = newGrade;
+        courses[courses.length - 1] = newCourse;
+        grades[grades.length - 1] = newGrade;
         numOfCourses++;
     }
 
